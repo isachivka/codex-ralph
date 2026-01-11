@@ -9,7 +9,9 @@ Process:
 4. Update the sprint item to checked only when all its steps are satisfied.
 5. Commit your changes with a **conventional commit** message.
 
-If you cannot complete the requirement, leave it unchecked and add a short `Notes:` entry explaining the blocker.
+If you cannot complete the requirement, leave it unchecked and record the blocker in the Sprint notes file.
+
+After each iteration, update the Sprint notes file with what you did, including details or nuances that will help the next iteration.
 
 When **all** items are checked, output:
 

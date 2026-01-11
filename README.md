@@ -14,11 +14,7 @@ Each requirement is a level-2 heading with a checkbox. The loop picks the first 
 
 ```markdown
 ## [ ] Requirement description
-- Category: functional
-- Steps:
-  - Step one
-  - Step two
-- Notes: Optional blocker note
+Description: Free-form task details.
 ```
 
 ## Behavior

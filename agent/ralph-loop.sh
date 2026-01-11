@@ -5,6 +5,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SPRINT_FILE=""
 MAX_ITERATIONS=0
+NOTES_FILE=""
 
 usage() {
   cat <<USAGE
@@ -46,6 +47,21 @@ fi
 if [[ ! -f "$SPRINT_FILE" ]]; then
   echo "Sprint file not found: $SPRINT_FILE" >&2
   exit 1
+fi
+
+if [[ -z "$NOTES_FILE" ]]; then
+  sprint_dir="$(cd "$(dirname "$SPRINT_FILE")" && pwd)"
+  sprint_base="$(basename "$SPRINT_FILE")"
+  notes_base="${sprint_base/Sprint_/SprintNotes_}"
+  if [[ "$notes_base" == "$sprint_base" ]]; then
+    notes_base="${sprint_base%.*}Notes.${sprint_base##*.}"
+  fi
+  NOTES_FILE="$sprint_dir/$notes_base"
+fi
+
+if [[ ! -f "$NOTES_FILE" ]]; then
+  mkdir -p "$(dirname "$NOTES_FILE")"
+  : > "$NOTES_FILE"
 fi
 
 PROMPT_FILE="$ROOT_DIR/agent/prompt.md"
@@ -130,6 +146,7 @@ while true; do
     cat "$PROMPT_FILE"
     echo ""
     echo "Sprint file: $SPRINT_FILE"
+    echo "Sprint notes file: $NOTES_FILE"
     echo ""
     echo "Current requirement (Markdown):"
     current_item_block

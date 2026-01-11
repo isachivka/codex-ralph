@@ -24,5 +24,6 @@ Each requirement is a level-2 heading with a checkbox. The loop picks the first 
 ## Behavior
 
 - Reads the sprint file, finds the first unchecked item, and passes it to Codex.
+- Derives a parallel notes file alongside the sprint (for example `Sprint_0001.md` -> `SprintNotes_0001.md`) and includes its path in the prompt.
 - Marks items complete only when all steps are satisfied.
 - Uses conventional commits for each completed requirement.

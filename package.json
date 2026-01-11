@@ -1,12 +1,16 @@
 {
   "name": "codex-ralph",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Ralph Loop sprint runner for Codex.",
   "bin": {
     "ralph-loop": "agent/ralph-loop.sh"
   },
   "scripts": {
     "ralph-loop": "agent/ralph-loop.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isachivka/codex-ralph.git"
   },
   "author": "Igor Sachivka <juicy.igor@gmail.com>",
   "license": "MIT"

@@ -1,6 +1,6 @@
-# Codex Ralph Loop
+# Codex Ralph Wiggum Loop
 
-Minimal Ralph Loop runner that feeds a sprint requirement into Codex, one item per iteration.
+Minimal Ralph Wiggum Loop runner that feeds a sprint requirement into Codex, one item per iteration.
 
 ## Quick start
 

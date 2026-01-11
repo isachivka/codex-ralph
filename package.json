@@ -1,7 +1,6 @@
 {
   "name": "codex-ralph",
   "version": "0.1.0",
-  "private": true,
   "description": "Ralph Loop sprint runner for Codex.",
   "bin": {
     "ralph-loop": "agent/ralph-loop.sh"
@@ -9,5 +8,6 @@
   "scripts": {
     "ralph-loop": "agent/ralph-loop.sh"
   },
-  "license": "UNLICENSED"
+  "author": "is",
+  "license": "MIT"
 }

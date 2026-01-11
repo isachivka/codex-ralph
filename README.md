@@ -5,7 +5,7 @@ Minimal Ralph Loop runner that feeds a sprint requirement into Codex, one item p
 ## Quick start
 
 ```bash
-npx ralph-loop --sprint=docs/Sprint_0001.md --max-iterations=1
+npx ralph-loop --sprint=path/to/Sprint_0001.md --max-iterations=1
 ```
 
 ## Sprint format (Markdown)

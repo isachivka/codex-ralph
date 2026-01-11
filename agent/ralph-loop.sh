@@ -2,7 +2,12 @@
 
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SCRIPT_PATH="$(python3 - <<PY
+import os
+print(os.path.realpath("${BASH_SOURCE[0]}"))
+PY
+)"
+ROOT_DIR="$(cd "$(dirname "$SCRIPT_PATH")/.." && pwd)"
 SPRINT_FILE=""
 MAX_ITERATIONS=0
 NOTES_FILE=""

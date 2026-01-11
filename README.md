@@ -5,7 +5,7 @@ Minimal Ralph Wiggum Loop runner that feeds a sprint requirement into Codex, one
 ## Quick start
 
 ```bash
-npx ralph-loop --sprint=path/to/Sprint_0001.md --max-iterations=1
+npx codex-ralph --sprint=path/to/Sprint_0001.md --max-iterations=1
 ```
 
 ## Sprint format (Markdown)

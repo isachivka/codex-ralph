@@ -21,6 +21,7 @@ Description: Free-form task details.
 
 - Reads the sprint file, finds the first unchecked item, and passes it to Codex.
 - Derives a parallel notes file alongside the sprint (for example `Sprint_0001.md` -> `SprintNotes_0001.md`) and includes its path in the prompt.
-- Runs project quality checks (typecheck/lint/test) when applicable.
-- Marks items complete only when all steps are satisfied and checks pass.
+- Uses the Sprint notes file for progress logging and reusable Codebase Patterns.
+- Runs quality checks only when required by `AGENTS.md` or repo docs.
+- Marks items complete only when all steps are satisfied.
 - Uses conventional commits for each completed requirement.

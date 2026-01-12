@@ -11,19 +11,22 @@ ROOT_DIR="$(cd "$(dirname "$SCRIPT_PATH")/.." && pwd)"
 SPRINT_FILE=""
 MAX_ITERATIONS=10
 NOTES_FILE=""
-SESSION_UUID=""
+SESSION_EMOJI=""
 
-session_uuid() {
-  if [[ -n "${SESSION_UUID}" ]]; then
-    echo "${SESSION_UUID}"
+session_emoji() {
+  if [[ -n "${SESSION_EMOJI}" ]]; then
+    echo "${SESSION_EMOJI}"
     return
   fi
-  SESSION_UUID="$(python3 - <<PY
-import uuid
-print(uuid.uuid4())
-PY
-)"
-  echo "${SESSION_UUID}"
+  local emoji_pool=(
+    "🧭" "🧩" "🧪" "🛰️" "🪁"
+    "🪐" "🎛️" "🧿" "🧲" "🪄"
+    "🧰" "🪚" "🪝" "🪶" "🧯"
+    "🧵" "🧶" "🧷" "🪙" "🪬"
+  )
+  local index=$((RANDOM % ${#emoji_pool[@]}))
+  SESSION_EMOJI="${emoji_pool[$index]}"
+  echo "${SESSION_EMOJI}"
 }
 
 send_telegram() {
@@ -49,7 +52,7 @@ Options:
 USAGE
 }
 
-session_uuid >/dev/null
+session_emoji >/dev/null
 
 for arg in "$@"; do
   case "$arg" in
@@ -195,7 +198,8 @@ while true; do
   remaining="$(remaining_count)"
   if [[ "$remaining" == "0" ]]; then
     total="$(total_count)"
-    send_telegram "🧭 ~${SESSION_UUID}~"$'\n'"✅ All requirements completed"$'\n'"🎯 ${total} of ${total}"
+    session_marker="$(session_emoji)"
+    send_telegram "${session_marker}"$'\n'"✅ All requirements completed"$'\n'"🎯 ${total} of ${total}"
     echo "All sprint requirements complete."
     echo "<promise>DONE</promise>"
     exit 0
@@ -209,7 +213,8 @@ while true; do
   desc="$(next_description)"
   total="$(total_count)"
   current="$(current_index)"
-  send_telegram "🧭 ~${SESSION_UUID}~"$'\n'"📌 ${desc}"$'\n'"🎯 ${current} of ${total}"
+  session_marker="$(session_emoji)"
+  send_telegram "${session_marker}"$'\n'"📌 ${desc}"$'\n'"🎯 ${current} of ${total}"
   echo "Iteration $iteration - next requirement: $desc"
 
   prompt_tmp="$(mktemp)"

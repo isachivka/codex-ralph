@@ -17,7 +17,7 @@ CODEX_RALPH_TG_KEY=123456:bot-token
 CODEX_RALPH_TG_CHAT=123456789
 ```
 
-Provide these as environment variables (e.g., when invoking `npx`). Each session generates a UUID and includes it in progress messages.
+Provide these as environment variables (e.g., when invoking `npx`). Each session uses a randomly selected emoji to tag progress messages.
 
 Usage:
 
@@ -31,10 +31,10 @@ Optional flags:
 --max-iterations=10
 ```
 
-Message format:
+Message format (session emoji is chosen randomly from a small fixed set and stays constant for the session):
 
 ```
-🧭 ~<session-uuid>~
+<session emoji>
 📌 <current requirement title>
 🎯 <current index> of <total requirements>
 ```

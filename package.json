@@ -1,6 +1,6 @@
 {
   "name": "codex-ralph",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Ralph Loop sprint runner for Codex.",
   "bin": {
     "ralph-loop": "agent/ralph-loop.sh"

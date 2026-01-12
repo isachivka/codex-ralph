@@ -11,6 +11,42 @@ ROOT_DIR="$(cd "$(dirname "$SCRIPT_PATH")/.." && pwd)"
 SPRINT_FILE=""
 MAX_ITERATIONS=0
 NOTES_FILE=""
+SESSION_UUID=""
+
+load_env() {
+  local env_file="$ROOT_DIR/.env"
+  if [[ -f "$env_file" ]]; then
+    set -a
+    # shellcheck disable=SC1090
+    source "$env_file"
+    set +a
+  fi
+}
+
+session_uuid() {
+  if [[ -n "${SESSION_UUID}" ]]; then
+    echo "${SESSION_UUID}"
+    return
+  fi
+  SESSION_UUID="$(python3 - <<PY
+import uuid
+print(uuid.uuid4())
+PY
+)"
+  echo "${SESSION_UUID}"
+}
+
+send_telegram() {
+  local message="$1"
+  if [[ -z "${CODEX_RALPH_TG_KEY:-}" || -z "${CODEX_RALPH_TG_CHAT:-}" ]]; then
+    return
+  fi
+  curl -sS -o /dev/null -X POST \
+    "https://api.telegram.org/bot${CODEX_RALPH_TG_KEY}/sendMessage" \
+    -d "chat_id=${CODEX_RALPH_TG_CHAT}" \
+    --data-urlencode "text=${message}" \
+    || true
+}
 
 usage() {
   cat <<USAGE
@@ -22,6 +58,9 @@ Options:
   -h, --help             Show this help.
 USAGE
 }
+
+load_env
+session_uuid >/dev/null
 
 for arg in "$@"; do
   case "$arg" in
@@ -133,6 +172,7 @@ iteration=1
 while true; do
   remaining="$(remaining_count)"
   if [[ "$remaining" == "0" ]]; then
+    send_telegram "Ralph loop finished all requirements. Session ${SESSION_UUID}."
     echo "All sprint requirements complete."
     echo "<promise>DONE</promise>"
     exit 0
@@ -144,6 +184,7 @@ while true; do
   fi
 
   desc="$(next_description)"
+  send_telegram "Ralph loop starting requirement: ${desc}. Session ${SESSION_UUID}."
   echo "Iteration $iteration - next requirement: $desc"
 
   prompt_tmp="$(mktemp)"

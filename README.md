@@ -8,6 +8,17 @@ Minimal Ralph Wiggum Loop runner that feeds a sprint requirement into Codex, one
 npx codex-ralph --sprint=path/to/Sprint_0001.md --max-iterations=1
 ```
 
+## Telegram progress notifications
+
+If you set Telegram credentials, the loop will send progress messages:
+
+```
+CODEX_RALPH_TG_KEY=123456:bot-token
+CODEX_RALPH_TG_CHAT=123456789
+```
+
+You can place these in `.env` at the repo root; it will be loaded automatically. Each session generates a UUID and includes it in start/transition/finish messages.
+
 ## Sprint format (Markdown)
 
 Each requirement is a level-2 heading with a checkbox. The loop picks the first unchecked item.

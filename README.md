@@ -26,4 +26,4 @@ Description: Free-form task details.
 - The loop may provide a working branch; the agent should switch if specified.
 - Runs quality checks only when required by `AGENTS.md` or repo docs.
 - Marks items complete only when all steps are satisfied.
-- Uses conventional commits for each completed requirement.
+- Uses conventional commits for each completed requirement (no story ID requirement).

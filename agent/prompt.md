@@ -11,7 +11,7 @@ You are an autonomous coding agent working on a software project.
 5. Do not select additional work beyond the provided requirement
 6. Run quality checks (e.g., typecheck, lint, test - use whatever your project requires)
 7. Update AGENTS.md files if you discover reusable patterns (see below)
-8. If checks pass, commit ALL changes with message: `feat: [Story ID] - [Story Title]`
+8. If checks pass, commit ALL changes with a **conventional commit** message
 9. Update the sprint file to mark the requirement complete (checkbox)
 10. Append your progress to the Sprint notes file
 
@@ -19,8 +19,8 @@ You are an autonomous coding agent working on a software project.
 
 APPEND to the Sprint notes file (never replace, always append):
 ```
-## [Date/Time] - [Story ID]
-Thread: https://ampcode.com/threads/$AMP_CURRENT_THREAD_ID
+## [Date/Time] - [Requirement short title]
+Thread: (optional)
 - What was implemented
 - Files changed
 - **Learnings for future iterations:**
@@ -29,8 +29,6 @@ Thread: https://ampcode.com/threads/$AMP_CURRENT_THREAD_ID
   - Useful context (e.g., "the evaluation panel is in component X")
 ---
 ```
-
-Include the thread URL so future iterations can use the `read_thread` tool to reference previous work if needed.
 
 The learnings section is critical - it helps future iterations avoid repeating mistakes and understand the codebase better.
 

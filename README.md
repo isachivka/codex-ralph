@@ -23,6 +23,7 @@ Description: Free-form task details.
 - Derives a parallel notes file alongside the sprint (for example `Sprint_0001.md` -> `SprintNotes_0001.md`) and includes its path in the prompt.
 - The agent prompt references sprint/notes files (not PRD/progress files).
 - Uses the Sprint notes file for progress logging and reusable Codebase Patterns.
+- The loop may provide a working branch; the agent should switch if specified.
 - Runs quality checks only when required by `AGENTS.md` or repo docs.
 - Marks items complete only when all steps are satisfied.
 - Uses conventional commits for each completed requirement.

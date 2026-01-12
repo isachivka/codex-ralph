@@ -6,18 +6,18 @@ You are an autonomous coding agent working on a software project.
 
 1. Read the sprint file provided by the loop (for example `Sprint_0001.md`)
 2. Read the Sprint notes file provided by the loop (for example `SprintNotes_0001.md`) and check the Codebase Patterns section first
-3. Check you're on the correct branch from PRD `branchName`. If not, check it out or create from main.
-4. Pick the **highest priority** user story where `passes: false`
-5. Implement that single user story
+3. Ensure you're on the working branch specified by the loop (if provided). If not, check it out or create from main.
+4. Implement the single requirement provided by the loop
+5. Do not select additional work beyond the provided requirement
 6. Run quality checks (e.g., typecheck, lint, test - use whatever your project requires)
 7. Update AGENTS.md files if you discover reusable patterns (see below)
 8. If checks pass, commit ALL changes with message: `feat: [Story ID] - [Story Title]`
-9. Update the PRD to set `passes: true` for the completed story
-10. Append your progress to `progress.txt`
+9. Update the sprint file to mark the requirement complete (checkbox)
+10. Append your progress to the Sprint notes file
 
 ## Progress Report Format
 
-APPEND to progress.txt (never replace, always append):
+APPEND to the Sprint notes file (never replace, always append):
 ```
 ## [Date/Time] - [Story ID]
 Thread: https://ampcode.com/threads/$AMP_CURRENT_THREAD_ID
@@ -36,7 +36,7 @@ The learnings section is critical - it helps future iterations avoid repeating m
 
 ## Consolidate Patterns
 
-If you discover a **reusable pattern** that future iterations should know, add it to the `## Codebase Patterns` section at the TOP of progress.txt (create it if it doesn't exist). This section should consolidate the most important learnings:
+If you discover a **reusable pattern** that future iterations should know, add it to the `## Codebase Patterns` section at the TOP of the Sprint notes file (create it if it doesn't exist). This section should consolidate the most important learnings:
 
 ```
 ## Codebase Patterns
@@ -93,16 +93,16 @@ A frontend story is NOT complete until browser verification passes.
 
 ## Stop Condition
 
-After completing a user story, check if ALL stories have `passes: true`.
+After completing a requirement, check if ALL sprint items are checked.
 
-If ALL stories are complete and passing, reply with:
+If ALL requirements are complete, reply with:
 <promise>COMPLETE</promise>
 
-If there are still stories with `passes: false`, end your response normally (another iteration will pick up the next story).
+If there are still unchecked requirements, end your response normally (another iteration will pick up the next one).
 
 ## Important
 
-- Work on ONE story per iteration
+- Work on ONE requirement per iteration
 - Commit frequently
 - Keep CI green
 - Read the Codebase Patterns section in progress.txt before starting

@@ -20,7 +20,6 @@ You are an autonomous coding agent working on a software project.
 APPEND to the Sprint notes file (never replace, always append):
 ```
 ## [Date/Time] - [Requirement short title]
-Thread: (optional)
 - What was implemented
 - Files changed
 - **Learnings for future iterations:**
@@ -50,8 +49,9 @@ Only add patterns that are **general and reusable**, not story-specific details.
 Before committing, check if any edited files have learnings worth preserving in nearby AGENTS.md files:
 
 1. **Identify directories with edited files** - Look at which directories you modified
-2. **Check for existing AGENTS.md** - Look for AGENTS.md in those directories or parent directories
-3. **Add valuable learnings** - If you discovered something future developers/agents should know:
+2. **Check for existing AGENTS.md** - Look for AGENTS.md in those directories or parent directories. If none is found all the way up, use `./.codex/AGENTS.md`.
+3. **Monorepos** - If working under `./packages/<name>` (or similar), prefer placing AGENTS.md in that package if the knowledge is package-specific.
+4. **Add valuable learnings** - If you discovered something future developers/agents should know:
   - API patterns or conventions specific to that module
   - Gotchas or non-obvious requirements
   - Dependencies between files

@@ -17,7 +17,7 @@ CODEX_RALPH_TG_KEY=123456:bot-token
 CODEX_RALPH_TG_CHAT=123456789
 ```
 
-You can place these in `.env` at the repo root; it will be loaded automatically. Each session generates a UUID and includes it in start/transition/finish messages.
+Provide these as environment variables (e.g., when invoking `npx`). Each session generates a UUID and includes it in start/transition/finish messages.
 
 ## Sprint format (Markdown)
 
@@ -25,7 +25,10 @@ Each requirement is a level-2 heading with a checkbox. The loop picks the first 
 
 ```markdown
 ## [ ] Requirement description
+
 Description: Free-form task details.
+
+Acceptance criteria: Free-form acceptance criteria.
 ```
 
 ## Behavior

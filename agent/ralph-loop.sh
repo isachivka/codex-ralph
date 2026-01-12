@@ -13,16 +13,6 @@ MAX_ITERATIONS=0
 NOTES_FILE=""
 SESSION_UUID=""
 
-load_env() {
-  local env_file="$ROOT_DIR/.env"
-  if [[ -f "$env_file" ]]; then
-    set -a
-    # shellcheck disable=SC1090
-    source "$env_file"
-    set +a
-  fi
-}
-
 session_uuid() {
   if [[ -n "${SESSION_UUID}" ]]; then
     echo "${SESSION_UUID}"
@@ -59,7 +49,6 @@ Options:
 USAGE
 }
 
-load_env
 session_uuid >/dev/null
 
 for arg in "$@"; do

@@ -115,6 +115,33 @@ print(sum(1 for m in items if m.strip() != "x"))
 PY
 }
 
+total_count() {
+  python3 - <<PY
+from pathlib import Path
+import re
+
+path = Path("$SPRINT_FILE")
+text = path.read_text(encoding="utf-8")
+items = re.findall(r"^## \[( |x|X)\] ", text, flags=re.M)
+print(len(items))
+PY
+}
+
+current_index() {
+  python3 - <<PY
+from pathlib import Path
+import re
+
+path = Path("$SPRINT_FILE")
+text = path.read_text(encoding="utf-8")
+items = re.findall(r"^## \[( |x|X)\] ", text, flags=re.M)
+remaining = sum(1 for m in items if m.strip() != "x")
+total = len(items)
+current = total - remaining + 1 if remaining > 0 else total
+print(current)
+PY
+}
+
 next_description() {
   python3 - <<PY
 from pathlib import Path
@@ -161,7 +188,8 @@ iteration=1
 while true; do
   remaining="$(remaining_count)"
   if [[ "$remaining" == "0" ]]; then
-    send_telegram "Ralph loop finished all requirements. Session ${SESSION_UUID}."
+    total="$(total_count)"
+    send_telegram "~${SESSION_UUID}~"$'\n'"All requirements completed"$'\n'"${total} of ${total}"
     echo "All sprint requirements complete."
     echo "<promise>DONE</promise>"
     exit 0
@@ -173,7 +201,9 @@ while true; do
   fi
 
   desc="$(next_description)"
-  send_telegram "Ralph loop starting requirement: ${desc}. Session ${SESSION_UUID}."
+  total="$(total_count)"
+  current="$(current_index)"
+  send_telegram "~${SESSION_UUID}~"$'\n'"${desc}"$'\n'"${current} of ${total}"
   echo "Iteration $iteration - next requirement: $desc"
 
   prompt_tmp="$(mktemp)"

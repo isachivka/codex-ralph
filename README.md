@@ -17,7 +17,15 @@ CODEX_RALPH_TG_KEY=123456:bot-token
 CODEX_RALPH_TG_CHAT=123456789
 ```
 
-Provide these as environment variables (e.g., when invoking `npx`). Each session generates a UUID and includes it in start/transition/finish messages.
+Provide these as environment variables (e.g., when invoking `npx`). Each session generates a UUID and includes it in progress messages.
+
+Message format:
+
+```
+~<session-uuid>~
+<current requirement title>
+<current index> of <total requirements>
+```
 
 ## Sprint format (Markdown)
 

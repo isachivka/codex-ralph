@@ -73,21 +73,10 @@ Only update AGENTS.md if you have **genuinely reusable knowledge** that would he
 
 ## Quality Requirements
 
-- ALL commits must pass your project's quality checks (typecheck, lint, test)
+- Follow quality checks as specified in `AGENTS.md` or repo docs
 - Do NOT commit broken code
 - Keep changes focused and minimal
 - Follow existing code patterns
-
-## Browser Testing (Required for Frontend Stories)
-
-For any story that changes UI, you MUST verify it works in the browser:
-
-1. Load the `dev-browser` skill
-2. Navigate to the relevant page
-3. Verify the UI changes work as expected
-4. Take a screenshot if helpful for the progress log
-
-A frontend story is NOT complete until browser verification passes.
 
 ## Stop Condition
 
@@ -103,4 +92,4 @@ If there are still unchecked requirements, end your response normally (another i
 - Work on ONE requirement per iteration
 - Commit frequently
 - Keep CI green
-- Read the Codebase Patterns section in progress.txt before starting
+- Read the Codebase Patterns section in the Sprint notes file before starting

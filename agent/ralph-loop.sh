@@ -189,7 +189,7 @@ while true; do
   remaining="$(remaining_count)"
   if [[ "$remaining" == "0" ]]; then
     total="$(total_count)"
-    send_telegram "~${SESSION_UUID}~"$'\n'"All requirements completed"$'\n'"${total} of ${total}"
+    send_telegram "🧭 ~${SESSION_UUID}~"$'\n'"✅ All requirements completed"$'\n'"🎯 ${total} of ${total}"
     echo "All sprint requirements complete."
     echo "<promise>DONE</promise>"
     exit 0
@@ -203,7 +203,7 @@ while true; do
   desc="$(next_description)"
   total="$(total_count)"
   current="$(current_index)"
-  send_telegram "~${SESSION_UUID}~"$'\n'"${desc}"$'\n'"${current} of ${total}"
+  send_telegram "🧭 ~${SESSION_UUID}~"$'\n'"📌 ${desc}"$'\n'"🎯 ${current} of ${total}"
   echo "Iteration $iteration - next requirement: $desc"
 
   prompt_tmp="$(mktemp)"

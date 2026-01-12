@@ -22,9 +22,9 @@ Provide these as environment variables (e.g., when invoking `npx`). Each session
 Message format:
 
 ```
-~<session-uuid>~
-<current requirement title>
-<current index> of <total requirements>
+🧭 ~<session-uuid>~
+📌 <current requirement title>
+🎯 <current index> of <total requirements>
 ```
 
 ## Sprint format (Markdown)

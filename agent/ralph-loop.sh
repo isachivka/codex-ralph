@@ -9,7 +9,7 @@ PY
 )"
 ROOT_DIR="$(cd "$(dirname "$SCRIPT_PATH")/.." && pwd)"
 SPRINT_FILE=""
-MAX_ITERATIONS=0
+MAX_ITERATIONS=10
 NOTES_FILE=""
 SESSION_UUID=""
 
@@ -40,11 +40,11 @@ send_telegram() {
 
 usage() {
   cat <<USAGE
-Usage: ralph-loop --sprint=PATH [--max-iterations=N]
+Usage: ralph-loop SPRINT_PATH [--max-iterations=N]
 
 Options:
-  --sprint=PATH          Path to the sprint markdown file (required).
-  --max-iterations=N     Stop after N iterations (0 = no limit).
+  SPRINT_PATH            Path to the sprint markdown file (required).
+  --max-iterations=N     Stop after N iterations (0 = no limit, default 10).
   -h, --help             Show this help.
 USAGE
 }
@@ -53,9 +53,6 @@ session_uuid >/dev/null
 
 for arg in "$@"; do
   case "$arg" in
-    --sprint=*)
-      SPRINT_FILE="${arg#*=}"
-      ;;
     --max-iterations=*)
       MAX_ITERATIONS="${arg#*=}"
       ;;
@@ -63,10 +60,19 @@ for arg in "$@"; do
       usage
       exit 0
       ;;
-    *)
+    -*)
       echo "Unknown argument: $arg" >&2
       usage >&2
       exit 1
+      ;;
+    *)
+      if [[ -z "$SPRINT_FILE" ]]; then
+        SPRINT_FILE="$arg"
+      else
+        echo "Unexpected argument: $arg" >&2
+        usage >&2
+        exit 1
+      fi
       ;;
   esac
  done

@@ -5,7 +5,7 @@ Minimal Ralph Wiggum Loop runner that feeds a sprint requirement into Codex, one
 ## Quick start
 
 ```bash
-npx codex-ralph --sprint=path/to/Sprint_0001.md --max-iterations=1
+npx codex-ralph path/to/Sprint_0001.md --max-iterations=1
 ```
 
 ## Telegram progress notifications
@@ -18,6 +18,18 @@ CODEX_RALPH_TG_CHAT=123456789
 ```
 
 Provide these as environment variables (e.g., when invoking `npx`). Each session generates a UUID and includes it in progress messages.
+
+Usage:
+
+```
+npx codex-ralph path/to/Sprint_0001.md
+```
+
+Optional flags:
+
+```
+--max-iterations=10
+```
 
 Message format:
 

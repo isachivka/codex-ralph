@@ -67,6 +67,9 @@ Acceptance criteria: Free-form acceptance criteria.
 
 ## Changelog
 
+### 0.6.4
+- Fix: Removed conflicting `--yolo` flag from Gemini agent command.
+
 ### 0.6.3
 - Feat: Added custom flags (--yolo, --no-sandbox, --approval-mode yolo) for Gemini agent command.
 

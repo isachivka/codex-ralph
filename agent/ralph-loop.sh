@@ -256,7 +256,7 @@ while true; do
   if [[ "$USE_CURSOR_AGENT" == "true" ]]; then
     cursor-agent -f -p < "$prompt_tmp"
   elif [[ "$USE_GEMINI_AGENT" == "true" ]]; then
-    gemini --yolo --no-sandbox --approval-mode yolo "$(cat "$prompt_tmp")"
+    gemini --no-sandbox --approval-mode yolo "$(cat "$prompt_tmp")"
   else
     codex exec - < "$prompt_tmp"
   fi

@@ -234,7 +234,7 @@ while true; do
   } > "$prompt_tmp"
 
   if [[ "$USE_CURSOR_AGENT" == "true" ]]; then
-    cursor-agent -p < "$prompt_tmp"
+    cursor-agent -f -p < "$prompt_tmp"
   else
     codex exec - < "$prompt_tmp"
   fi

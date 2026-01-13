@@ -62,3 +62,8 @@ Acceptance criteria: Free-form acceptance criteria.
 - Marks items complete only when all steps are satisfied.
 - Uses conventional commits for each completed requirement (no story ID requirement).
 - If no local `AGENTS.md` exists up the tree, use `./.codex/AGENTS.md`. In monorepos, prefer package-level AGENTS.md for package-specific knowledge.
+
+## Changelog
+
+### 0.5.0
+- Version bump.

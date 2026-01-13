@@ -67,6 +67,9 @@ Acceptance criteria: Free-form acceptance criteria.
 
 ## Changelog
 
+### 0.6.1
+- Fix: Corrected the command for the Gemini agent.
+
 ### 0.6.0
 - Add support for Gemini agent via `--gemini-agent` flag.
 

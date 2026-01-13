@@ -13,6 +13,7 @@ MAX_ITERATIONS=10
 NOTES_FILE=""
 SESSION_EMOJI=""
 USE_CURSOR_AGENT=false
+USE_GEMINI_AGENT=false
 
 session_emoji() {
   if [[ -n "${SESSION_EMOJI}" ]]; then
@@ -50,6 +51,7 @@ Options:
   SPRINT_PATH            Path to the sprint markdown file (required).
   --max-iterations=N     Stop after N iterations (0 = no limit, default 10).
   --cursor-agent         Use cursor-agent instead of codex (default: disabled).
+  --gemini-agent         Use gemini-agent instead of codex (default: disabled).
   -h, --help             Show this help.
 USAGE
 }
@@ -63,6 +65,9 @@ for arg in "$@"; do
       ;;
     --cursor-agent)
       USE_CURSOR_AGENT=true
+      ;;
+    --gemini-agent)
+      USE_GEMINI_AGENT=true
       ;;
     -h|--help)
       usage
@@ -250,6 +255,8 @@ while true; do
 
   if [[ "$USE_CURSOR_AGENT" == "true" ]]; then
     cursor-agent -f -p < "$prompt_tmp"
+  elif [[ "$USE_GEMINI_AGENT" == "true" ]]; then
+    gemini-agent -p -f < "$prompt_tmp"
   else
     codex exec - < "$prompt_tmp"
   fi

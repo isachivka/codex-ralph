@@ -29,6 +29,8 @@ Optional flags:
 
 ```
 --max-iterations=10
+--cursor-agent
+--gemini-agent
 ```
 
 Message format (session emoji is chosen randomly from a small fixed set and stays constant for the session):
@@ -64,6 +66,9 @@ Acceptance criteria: Free-form acceptance criteria.
 - If no local `AGENTS.md` exists up the tree, use `./.codex/AGENTS.md`. In monorepos, prefer package-level AGENTS.md for package-specific knowledge.
 
 ## Changelog
+
+### 0.6.0
+- Add support for Gemini agent via `--gemini-agent` flag.
 
 ### 0.5.0
 - Version bump.

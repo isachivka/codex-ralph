@@ -67,6 +67,9 @@ Acceptance criteria: Free-form acceptance criteria.
 
 ## Changelog
 
+### 0.6.2
+- Fix: Further corrected Gemini agent command to use positional argument instead of stdin.
+
 ### 0.6.1
 - Fix: Corrected the command for the Gemini agent.
 

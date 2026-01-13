@@ -198,13 +198,26 @@ else:
 PY
 }
 
+progress_bar() {
+  local completed="$1"
+  local total="$2"
+  python3 - <<PY
+completed = $completed
+total = $total
+filled = "🟩" * completed
+empty = "⬜️" * (total - completed)
+print(filled + empty)
+PY
+}
+
 iteration=1
 while true; do
   remaining="$(remaining_count)"
   if [[ "$remaining" == "0" ]]; then
     total="$(total_count)"
     session_marker="$(session_emoji)"
-    send_telegram "${session_marker}"$'\n'"✅ All requirements completed"$'\n'"🎯 ${total} of ${total}"
+    progress="$(progress_bar "$total" "$total")"
+    send_telegram "${session_marker}"$'\n'"✅ All requirements completed"$'\n'"🎯 ${total} of ${total}"$'\n'"${progress}"
     echo "All sprint requirements complete."
     echo "<promise>DONE</promise>"
     exit 0
@@ -218,8 +231,10 @@ while true; do
   desc="$(next_description)"
   total="$(total_count)"
   current="$(current_index)"
+  completed=$((current - 1))
   session_marker="$(session_emoji)"
-  send_telegram "${session_marker}"$'\n'"📌 ${desc}"$'\n'"🎯 ${current} of ${total}"
+  progress="$(progress_bar "$completed" "$total")"
+  send_telegram "${session_marker}  ${desc}"$'\n'"🎯 ${current} of ${total}"$'\n'"${progress}"
   echo "Iteration $iteration - next requirement: $desc"
 
   prompt_tmp="$(mktemp)"

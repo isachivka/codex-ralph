@@ -14,6 +14,7 @@ NOTES_FILE=""
 SESSION_EMOJI=""
 USE_CURSOR_AGENT=false
 USE_GEMINI_AGENT=false
+USE_CLAUDE_AGENT=false
 
 session_emoji() {
   if [[ -n "${SESSION_EMOJI}" ]]; then
@@ -45,13 +46,14 @@ send_telegram() {
 
 usage() {
   cat <<USAGE
-Usage: ralph-loop SPRINT_PATH [--max-iterations=N] [--cursor-agent]
+Usage: ralph-loop SPRINT_PATH [--max-iterations=N] [--cursor-agent] [--gemini-agent] [--claude-agent]
 
 Options:
   SPRINT_PATH            Path to the sprint markdown file (required).
   --max-iterations=N     Stop after N iterations (0 = no limit, default 10).
   --cursor-agent         Use cursor-agent instead of codex (default: disabled).
   --gemini-agent         Use gemini-agent instead of codex (default: disabled).
+  --claude-agent         Use claude instead of codex (default: disabled).
   -h, --help             Show this help.
 USAGE
 }
@@ -68,6 +70,9 @@ for arg in "$@"; do
       ;;
     --gemini-agent)
       USE_GEMINI_AGENT=true
+      ;;
+    --claude-agent)
+      USE_CLAUDE_AGENT=true
       ;;
     -h|--help)
       usage
@@ -257,6 +262,8 @@ while true; do
     cursor-agent -f -p < "$prompt_tmp"
   elif [[ "$USE_GEMINI_AGENT" == "true" ]]; then
     gemini --no-sandbox --approval-mode yolo "$(cat "$prompt_tmp")"
+  elif [[ "$USE_CLAUDE_AGENT" == "true" ]]; then
+    claude -p --dangerously-skip-permissions < "$prompt_tmp"
   else
     codex exec - < "$prompt_tmp"
   fi

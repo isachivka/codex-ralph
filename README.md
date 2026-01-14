@@ -31,6 +31,7 @@ Optional flags:
 --max-iterations=10
 --cursor-agent
 --gemini-agent
+--claude-agent
 ```
 
 Message format (session emoji is chosen randomly from a small fixed set and stays constant for the session):

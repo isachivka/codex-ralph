@@ -52,6 +52,12 @@ Each requirement is a level-2 heading with a checkbox. The loop picks the first 
 Description: Free-form task details.
 
 Acceptance criteria: Free-form acceptance criteria.
+
+## [ ] Requirement description
+
+Description: Free-form task details.
+
+Acceptance criteria: Free-form acceptance criteria.
 ```
 
 ## Behavior
